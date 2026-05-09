@@ -5,4 +5,8 @@ fileignoreconfig:
   checksum: fc6a130dec36c23c876fd92ec773356227dc2d4dd7a8d21f4d16124e2a9d5886
 - filename: containers/docker-compose.yml
   checksum: c425f78be87f6c67393eaefc034ddf9445678db6fd4b3c38cfc8a5e0afbf01e1
+- filename: css/bootstrap.min.css
+  checksum: 4fbd3071d3ae84444e78fbb994647d3134a44055e024a9b21690f288deed796e
+- filename: js/bootstrap.min.js
+  checksum: 9b9c7f5b04e0f9867c133d38677e990f2c5ff3e48eda36ca0afab453cc310fa3
 version: "1.0"
