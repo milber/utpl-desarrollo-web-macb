@@ -1,0 +1,8 @@
+fileignoreconfig:
+- filename: containers/.env
+  checksum: 304d66d76fea677b0fde7bc3a660dd9537ff54fcd60823aa341b6182d882fbab
+- filename: containers/.env_example
+  checksum: fc6a130dec36c23c876fd92ec773356227dc2d4dd7a8d21f4d16124e2a9d5886
+- filename: containers/docker-compose.yml
+  checksum: c425f78be87f6c67393eaefc034ddf9445678db6fd4b3c38cfc8a5e0afbf01e1
+version: "1.0"
