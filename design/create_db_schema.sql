@@ -26,3 +26,13 @@ CREATE TABLE IF NOT EXISTS `macb_dw`.`usuarios` (
   PRIMARY KEY (`id_usuario`))
 ENGINE = InnoDB;
 
+-- User for app
+CREATE USER IF NOT EXISTS 'macb_app'@'localhost'
+IDENTIFIED BY 'MacbApp2026!';
+
+-- Permisos sobre la base
+GRANT ALL PRIVILEGES
+ON macb_dw.*
+TO 'macb_app'@'localhost';
+
+FLUSH PRIVILEGES;
