@@ -41,8 +41,8 @@
                     <!-- Register Form -->
                     <div class="collapse multi-collapse" id="register-form">
                         <h3 class="text-center mb-4 fw-bold">Nueva Cuenta</h3>
-                        <form action="procesar.php" method="POST" onsubmit="return validatePasswords()">
-                            <input type="hidden" name="accion" value="registro">
+                        <form action="register.php" method="POST" onsubmit="return validatePasswords()">
+                            <input type="hidden" name="accion" value="record">
                             
                             <div class="mb-3">
                                 <label class="form-label text-secondary small fw-bold">NOMBRE</label>
@@ -53,6 +53,17 @@
                                         oninvalid="this.setCustomValidity('Por favor, ingrese un nombre')"
                                         oninput="this.setCustomValidity('')">
                             </div>
+
+                            <div class="mb-3">
+                                <label class="form-label text-secondary small fw-bold">CÉDULA</label>
+                                <input type="text"
+                                        name="cedi;a"
+                                        class="form-control"
+                                        required
+                                        oninvalid="this.setCustomValidity('Por favor, ingrese la cédula')"
+                                        oninput="this.setCustomValidity('')">
+                            </div>
+
 
                             <div class="mb-3">
                                 <label class="form-label text-secondary small fw-bold">CORREO</label>
