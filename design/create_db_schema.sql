@@ -12,7 +12,7 @@ DROP SCHEMA IF EXISTS `macb_dw` ;
 -- -----------------------------------------------------
 -- Schema macb_dw
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `macb_dw` DEFAULT CHARACTER SET UTF8MB4 ;
+CREATE SCHEMA IF NOT EXISTS `macb_dw` DEFAULT CHARACTER SET utf8 ;
 USE `macb_dw` ;
 
 -- -----------------------------------------------------
@@ -23,8 +23,8 @@ CREATE TABLE IF NOT EXISTS `macb_dw`.`usuarios` (
   `cedula` VARCHAR(10) NOT NULL,
   `nombre` VARCHAR(100) NOT NULL,
   `correo` VARCHAR(100) NOT NULL,
-  `fecha_registro` DATETIME NOT NULL,
-  `clave_segura` VARCHAR(20) NOT NULL,
+  `fecha_registro` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `clave_segura` VARCHAR(100) NOT NULL,
   UNIQUE INDEX `cedula_UNIQUE` (`cedula` ASC) VISIBLE,
   UNIQUE INDEX `correo_UNIQUE` (`correo` ASC) VISIBLE,
   PRIMARY KEY (`id_usuario`))

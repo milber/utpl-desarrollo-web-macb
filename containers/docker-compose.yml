@@ -1,15 +1,18 @@
 version: '3.8'
 
 services:
-  # 1. PHP and Apache Web Server (uses official image with ARM support)
   web:
-    image: php:8.3-apache # You can choose your desired PHP version here
+    image: php:8.3-apache
     container_name: web_php_arm
     ports:
       - "8080:80"
     volumes:
-      # Mounts your current directory to Apache's web root
       - ../:/var/www/html
+    # Esta es la instrucción para instalar al arrancar
+    command: >
+      sh -c "docker-php-ext-install mysqli &&
+             docker-php-ext-enable mysqli &&
+             apache2-foreground"
     restart: always
 
 #   # 2. MariaDB Database (uses official image with ARM support)

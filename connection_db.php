@@ -1,5 +1,5 @@
 <?php
-$host = "localhost";
+$host = "host.docker.internal"; # Servier is in docker, db is local
 $user = "macb_app";
 $pass = "MacbApp2026!";
 $db   = "macb_dw";

@@ -57,7 +57,7 @@
                             <div class="mb-3">
                                 <label class="form-label text-secondary small fw-bold">CÉDULA</label>
                                 <input type="text"
-                                        name="cedi;a"
+                                        name="cedula"
                                         class="form-control"
                                         required
                                         oninvalid="this.setCustomValidity('Por favor, ingrese la cédula')"
