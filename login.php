@@ -20,7 +20,7 @@
                     <!-- Login Form -->
                     <div class="collapse show multi-collapse" id="login-form">
                         <h3 class="text-center mb-4 fw-bold">Bienvenido</h3>
-                        <form action="procesar.php" method="POST">
+                        <form action="create_session.php" method="POST">
                             <input type="hidden" name="accion" value="login">
                             <div class="mb-3">
                                 <label class="form-label text-secondary small fw-bold">CORREO ELECTRÓNICO</label>
