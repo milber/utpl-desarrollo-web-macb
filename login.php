@@ -24,11 +24,21 @@
                             <input type="hidden" name="accion" value="login">
                             <div class="mb-3">
                                 <label class="form-label text-secondary small fw-bold">CORREO ELECTRÓNICO</label>
-                                <input type="email" name="correo" class="form-control" required>
+                                <input type="email"
+                                        name="correo"
+                                        class="form-control"
+                                        required
+                                        oninvalid="this.setCustomValidity('Por favor, ingrese un correo válido')"
+                                        oninput="this.setCustomValidity('')">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label text-secondary small fw-bold">CONTRASEÑA</label>
-                                <input type="password" name="password" class="form-control" required>
+                                <input type="password"
+                                        name="password"
+                                        class="form-control"
+                                        required
+                                        oninvalid="this.setCustomValidity('Por favor, ingresa una contraseña')"
+                                        oninput="this.setCustomValidity('')">
                             </div>
                             <button type="submit" class="btn btn-primary w-100 shadow-sm">Entrar</button>
                         </form>
