@@ -150,20 +150,16 @@
 </script>
 
 <script>
-    // Si hay un error de registro, se abre formulario de registro automáticamente
     const urlParams = new URLSearchParams(window.location.search);
     const error = urlParams.get('error');
 
-    if (error === 'cedula_duplicada' || error === 'reg_error') {
-        const registerCollapse = new bootstrap.Collapse(document.getElementById('register-form'), {
-            toggle: true
-        });
-        const loginCollapse = new bootstrap.Collapse(document.getElementById('login-form'), {
-            toggle: false
-        });
-        // Ocultar login y mostrar registro
+    // Lista de errores que deben mostrar el formulario de registro
+    const erroresRegistro = ['cedula_duplicada', 'correo_duplicado', 'reg_error'];
+
+    if (erroresRegistro.includes(error)) {
+        // Lógica para alternar el collapse de Bootstrap
+        const registerCollapse = new bootstrap.Collapse(document.getElementById('register-form'), { toggle: true });
         document.getElementById('login-form').classList.remove('show');
-        document.getElementById('register-form').classList.add('show');
     }
 </script>
 

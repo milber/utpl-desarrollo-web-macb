@@ -38,9 +38,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit();
 
         } catch (mysqli_sql_exception $e) {
-            // El código 1062 indica entrada duplicada
             if ($e->getCode() === 1062) {
-                header("Location: login.php?error=cedula_duplicada");
+                $errorMessage = $e->getMessage();
+
+                // Verificar si el error menciona la columna 'correo' o 'cedula'
+                if (str_contains($errorMessage, 'correo')) {
+                    header("Location: login.php?error=correo_duplicado");
+                } elseif (str_contains($errorMessage, 'cedula')) {
+                    header("Location: login.php?error=cedula_duplicada");
+                } else {
+                    header("Location: login.php?error=registro_duplicado");
+                }
             } else {
                 header("Location: login.php?error=reg_error");
             }

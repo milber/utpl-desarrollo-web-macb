@@ -6,7 +6,13 @@
 
         switch ($_GET['error']) {
             case 'cedula_duplicada':
-                $mensaje = "<strong>Error:</strong> La cédula ingresada ya se encuentra registrada en el sistema.";
+                $mensaje = "<strong>Error:</strong> Esta cédula ya está registrada.";
+                break;
+            case 'correo_duplicado':
+                $mensaje = "<strong>Error:</strong> Este correo electrónico ya está en uso.";
+                break;
+            case 'campos_vacios':
+                $mensaje = "<strong>¡Atención!</strong> Por favor, llena todos los campos.";
                 break;
             case 'campos_vacios':
                 $mensaje = "<strong>¡Atención!</strong> Por favor, llena todos los campos.";
