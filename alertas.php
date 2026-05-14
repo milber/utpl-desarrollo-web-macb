@@ -1,9 +1,13 @@
 <?php
+    // alertas.php
     if (isset($_GET['error'])) {
         $mensaje = "";
         $tipo = "danger"; // Color rojo de Bootstrap
 
         switch ($_GET['error']) {
+            case 'cedula_duplicada':
+                $mensaje = "<strong>Error:</strong> La cédula ingresada ya se encuentra registrada en el sistema.";
+                break;
             case 'campos_vacios':
                 $mensaje = "<strong>¡Atención!</strong> Por favor, llena todos los campos.";
                 break;
@@ -17,8 +21,7 @@
                 $mensaje = "Ocurrió un error inesperado.";
         }
 
-        // presenta el mensaje de error
-
+        // Presenta el mensaje de error
         if ($mensaje !== "") {
             echo '
             <div class="alert alert-' . $tipo . ' alert-dismissible fade show shadow-sm" role="alert">
@@ -28,11 +31,11 @@
         }
     }
 
-    // presenta el mensaje
-
+    // Presenta el mensaje de éxito
     if (isset($_GET['status']) && $_GET['status'] === 'reg_success') {
         echo '
         <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
+            <i class="bi bi-check-circle-fill me-2"></i>
             <strong>¡Éxito!</strong> Tu cuenta ha sido creada. Ya puedes iniciar sesión.
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>';

@@ -63,8 +63,16 @@
 
                             <div class="mb-3">
                                 <label class="form-label text-secondary small fw-bold">CÉDULA</label>
-                                <input type="text" name="cedula" class="form-control" required>
-                                <div class="invalid-feedback">Ingrese su número de cédula.</div>
+                                <input type="text"
+                                    name="cedula"
+                                    id="cedula"
+                                    class="form-control"
+                                    required
+                                    pattern="\d{10}"
+                                    maxlength="10"
+                                    minlength="10"
+                                    oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                                <div class="invalid-feedback">La cédula debe tener exactamente 10 dígitos numéricos.</div>
                             </div>
 
                             <div class="mb-3">
@@ -75,8 +83,16 @@
 
                             <div class="mb-3">
                                 <label class="form-label text-secondary small fw-bold">CONTRASEÑA</label>
-                                <input type="password" id="reg_password" name="password" class="form-control" required>
-                                <div class="invalid-feedback">Escriba una contraseña.</div>
+                                <input type="password"
+                                    id="reg_password"
+                                    name="password"
+                                    class="form-control"
+                                    required
+                                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}">
+                                <!-- Mensaje formato de la cedula -->
+                                <div id="password-help" class="form-text text-info mt-2 fw-medium" style="font-size: 0.85rem;">
+                                    La contraseña debe tener al menos 6 caracteres, incluyendo una mayúscula, una minúscula y un número.
+                                </div>
                             </div>
 
                             <div class="mb-3">
@@ -131,6 +147,48 @@
         errorElement.classList.add('d-none');
         return true;
     }
+</script>
+
+<script>
+    // Si hay un error de registro, se abre formulario de registro automáticamente
+    const urlParams = new URLSearchParams(window.location.search);
+    const error = urlParams.get('error');
+
+    if (error === 'cedula_duplicada' || error === 'reg_error') {
+        const registerCollapse = new bootstrap.Collapse(document.getElementById('register-form'), {
+            toggle: true
+        });
+        const loginCollapse = new bootstrap.Collapse(document.getElementById('login-form'), {
+            toggle: false
+        });
+        // Ocultar login y mostrar registro
+        document.getElementById('login-form').classList.remove('show');
+        document.getElementById('register-form').classList.add('show');
+    }
+</script>
+
+<script>
+    const passwordInput = document.getElementById('reg_password');
+    const passwordHelp = document.getElementById('password-help');
+
+    // Expresión regular que evalua el formato de la contraseña
+    const passwordRegExp = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+
+    passwordInput.addEventListener('input', function() {
+        if (passwordInput.value === "") {
+            // Si está vacío, vuelve al color azul/info original
+            passwordHelp.classList.remove('text-danger', 'text-success');
+            passwordHelp.classList.add('text-info');
+        } else if (passwordRegExp.test(passwordInput.value)) {
+            // Si cumple los requisitos, se pone verde
+            passwordHelp.classList.remove('text-info', 'text-danger');
+            passwordHelp.classList.add('text-success');
+        } else {
+            // Si NO cumple mientras escribe, se pone ROJO
+            passwordHelp.classList.remove('text-info', 'text-success');
+            passwordHelp.classList.add('text-danger');
+        }
+    });
 </script>
 
 </body>

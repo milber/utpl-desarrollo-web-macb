@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $correo   = filter_var($_POST['correo'], FILTER_SANITIZE_EMAIL);
         $password = $_POST['password'];
 
-        // Validación de varios
+        // Validación de varios campos
         if (empty($nombre) || empty($correo) || empty($password)) {
             header("Location: login.php?status=reg_error");
             exit();
@@ -27,22 +27,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
         // Insertar el registro
-        $sql = "INSERT INTO usuarios (nombre, cedula, correo, clave_segura) VALUES (?, ?, ?, ?)";
-        $stmt = $conn->prepare($sql);
 
-        if ($stmt) {
+        try {
+            $sql = "INSERT INTO usuarios (nombre, cedula, correo, clave_segura) VALUES (?, ?, ?, ?)";
+            $stmt = $conn->prepare($sql);
             $stmt->bind_param("ssss", $nombre, $cedula, $correo, $secure_password);
+            $stmt->execute();
 
-            if ($stmt->execute()) {
-                header("Location: login.php?status=reg_success");
+            header("Location: login.php?status=reg_success");
+            exit();
+
+        } catch (mysqli_sql_exception $e) {
+            // El código 1062 indica entrada duplicada
+            if ($e->getCode() === 1062) {
+                header("Location: login.php?error=cedula_duplicada");
             } else {
-                // redirección de error
-                header("Location: login.php?status=reg_error");
+                header("Location: login.php?error=reg_error");
             }
-            $stmt->close();
-        } else {
-            // redirección de error
-            header("Location: login.php?status=reg_error");
+            exit();
         }
     }
 }
