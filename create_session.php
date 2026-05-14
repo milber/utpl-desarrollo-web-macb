@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['accion']) && $_POST['
             // creación de sesióm
             session_regenerate_id(true); 
             $_SESSION['user_id'] = $user['id_usuario'];
-            $_SESSION['user_name'] = $user['nombre'];
+            $_SESSION['user_nombre'] = $user['nombre'];
             $_SESSION['user_correo'] = $user['correo'];
             $_SESSION['user_cedula'] = $user['cedula'];
             $_SESSION['user_fecha_registro'] = $user['fecha_registro'];
