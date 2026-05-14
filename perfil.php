@@ -31,7 +31,7 @@
                         <a class="nav-link active" href="#"><i class="bi bi-person-circle me-2"></i> Mi Perfil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="bi bi-pencil-square me-2"></i> Editar Datos</a>
+                        <a class="nav-link" href="edit_perfil.php"><i class="bi bi-pencil-square me-2"></i> Editar Datos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"><i class="bi bi-shield-lock me-2"></i> Seguridad</a>
@@ -77,9 +77,9 @@
                 </div>
 
                 <div class="mt-4 d-flex justify-content-end">
-                    <button class="btn btn-primary px-4 rounded-3 shadow-sm">
+                    <a href="edit_perfil.php" class="btn btn-primary px-4 rounded-3 shadow-sm">
                         <i class="bi bi-pencil me-2"></i> Editar Perfil
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>

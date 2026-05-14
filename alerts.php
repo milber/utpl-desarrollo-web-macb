@@ -1,5 +1,5 @@
 <?php
-    // alertas.php
+    // archivo que maneja las alertas de la applicacions
     if (isset($_GET['error'])) {
         $mensaje = "";
         $tipo = "danger"; // Color rojo de Bootstrap

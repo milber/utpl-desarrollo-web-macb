@@ -19,7 +19,7 @@
     <div class="row justify-content-center">
         <div class="col-md-5 col-lg-4">
             
-            <?php include 'alertas.php'; ?>
+            <?php include 'alerts.php'; ?>
 
             <div class="card shadow-lg border-0 rounded-4">
                 <div class="card-body p-4">
