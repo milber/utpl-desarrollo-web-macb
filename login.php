@@ -26,6 +26,8 @@
                     
                     <div class="collapse show multi-collapse" id="login-form">
                         <h3 class="text-center mb-4 fw-bold">Bienvenido</h3>
+
+                        <!-- Formulario de login  -->
                         <form action="create_session.php" method="POST" class="needs-validation" novalidate>
                             <input type="hidden" name="accion" value="login">
                             <div class="mb-3">
@@ -48,6 +50,8 @@
 
                     <div class="collapse multi-collapse" id="register-form">
                         <h3 class="text-center mb-4 fw-bold">Nueva Cuenta</h3>
+
+                        <!-- Formulario de registro de nueva cuenta  -->
                         <form action="register.php" method="POST" class="needs-validation" novalidate onsubmit="return validatePasswords()">
                             <input type="hidden" name="accion" value="record">
                             
@@ -98,7 +102,7 @@
 <script src="js/bootstrap.min.js"></script>
 
 <script>
-    // 1. Script para activar la validación de Bootstrap (reemplaza los globos grises)
+    // Stilos de validación de campos
     (() => {
       'use strict'
       const forms = document.querySelectorAll('.needs-validation')
@@ -113,7 +117,7 @@
       })
     })()
 
-    // 2. Tu validación personalizada de contraseñas
+    // 2. Validación de contraseñas
     function validatePasswords() {
         const password = document.getElementById('reg_password').value;
         const confirm = document.getElementById('confirm_password').value;

@@ -34,3 +34,14 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+-- User for app
+CREATE USER IF NOT EXISTS 'macb_app'@'localhost'
+IDENTIFIED BY 'MacbApp2026!';
+
+-- Permisos sobre la base
+GRANT ALL PRIVILEGES
+ON macb_dw.*
+TO 'macb_app'@'localhost';
+
+FLUSH PRIVILEGES;

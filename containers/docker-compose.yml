@@ -16,21 +16,21 @@ services:
     restart: always
 
 #   # 2. MariaDB Database (uses official image with ARM support)
-#   db:
-#     image: mariadb:latest
-#     container_name: db_mariadb_arm
-#     environment:
-#       # IMPORTANT: Change these values to secure credentials
-#       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASS}
-#       MYSQL_DATABASE: ${DB_NAME}
-#       MYSQL_USER: ${DB_USER}
-#       MYSQL_PASSWORD: ${DB_PASS}
-#     volumes:
-#       # This volume ensures your data persists even if the container is removed
-#       - db_data:/var/lib/mysql
-#     ports:
-#       - "3307:3306"
-#     restart: always
+  # db:
+  #   image: mariadb:latest
+  #   container_name: db_mariadb_arm
+  #   environment:
+  #     # IMPORTANT: Change these values to secure credentials
+  #     MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASS}
+  #     MYSQL_DATABASE: ${DB_NAME}
+  #     MYSQL_USER: ${DB_USER}
+  #     MYSQL_PASSWORD: ${DB_PASS}
+  #   volumes:
+  #     # This volume ensures your data persists even if the container is removed
+  #     - db_data:/var/lib/mysql
+  #   ports:
+  #     - "3307:3306"
+  #   restart: always
 
 #   # 3. phpMyAdmin (uses official image with ARM support)
 #   phpmyadmin:
@@ -44,6 +44,6 @@ services:
 #       - "8081:80"
 #     restart: always
 
-# # Define the persistent volume for MariaDB data
-# volumes:
-#   db_data:
+# Define the persistent volume for MariaDB data
+volumes:
+  db_data:

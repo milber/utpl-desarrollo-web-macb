@@ -17,6 +17,8 @@
                 $mensaje = "Ocurrió un error inesperado.";
         }
 
+        // presenta el mensaje de error
+
         if ($mensaje !== "") {
             echo '
             <div class="alert alert-' . $tipo . ' alert-dismissible fade show shadow-sm" role="alert">
@@ -25,6 +27,8 @@
             </div>';
         }
     }
+
+    // presenta el mensaje
 
     if (isset($_GET['status']) && $_GET['status'] === 'reg_success') {
         echo '
