@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['accion']) && $_POST['
     }
 
     // preparación de la consulta
-    $sql = "SELECT id_usuario, nombre, clave_segura FROM usuarios WHERE correo = ?";
+    $sql = "SELECT id_usuario, nombre, correo, cedula, clave_segura, fecha_registro FROM usuarios WHERE correo = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $correo);
     $stmt->execute();
