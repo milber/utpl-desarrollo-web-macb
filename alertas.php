@@ -1,26 +1,36 @@
-<?php if(isset($_GET['status'])): ?>
-    <div class="mb-3">
-        <?php
-        switch($_GET['status']) {
-            case 'reg_success':
-                echo '<div class="alert alert-success">¡Registro exitoso! Ya puedes ingresar.</div>';
+<?php
+    if (isset($_GET['error'])) {
+        $mensaje = "";
+        $tipo = "danger"; // Color rojo de Bootstrap
+
+        switch ($_GET['error']) {
+            case 'campos_vacios':
+                $mensaje = "<strong>¡Atención!</strong> Por favor, llena todos los campos.";
                 break;
-            case 'login_error':
-                echo '<div class="alert alert-danger">Correo o contraseña incorrectos.</div>';
+            case 'invalid_credentials':
+                $mensaje = "<strong>Error:</strong> Correo o contraseña incorrectos.";
                 break;
             case 'reg_error':
-                echo '<div class="alert alert-danger">Error al registrar. Los datos podrían estar duplicados.</div>';
+                $mensaje = "<strong>Error:</strong> No se pudo crear la cuenta. Intenta de nuevo.";
                 break;
-            case 'pass_short':
-                echo '<div class="alert alert-warning">La contraseña debe tener al menos 6 caracteres.</div>';
-                break;
-            case 'update_success':
-                echo '<div class="alert alert-success">Perfil actualizado correctamente.</div>';
-                break;
-            case 'update_error':
-                echo '<div class="alert alert-danger">Error al actualizar el perfil.</div>';
-                break;
+            default:
+                $mensaje = "Ocurrió un error inesperado.";
         }
-        ?>
-    </div>
-<?php endif; ?>
+
+        if ($mensaje !== "") {
+            echo '
+            <div class="alert alert-' . $tipo . ' alert-dismissible fade show shadow-sm" role="alert">
+                <i class="bi bi-exclamation-triangle-fill me-2"></i> ' . $mensaje . '
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>';
+        }
+    }
+
+    if (isset($_GET['status']) && $_GET['status'] === 'reg_success') {
+        echo '
+        <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
+            <strong>¡Éxito!</strong> Tu cuenta ha sido creada. Ya puedes iniciar sesión.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>';
+    }
+?>

@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Acceso al Sistema</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        /* Estilo opcional para que el mensaje rojo se vea más vibrante */
+        .invalid-feedback {
+            font-size: 0.8em;
+            font-weight: 500;
+        }
+    </style>
 </head>
 <body class="bg-light">
 
@@ -17,28 +24,19 @@
             <div class="card shadow-lg border-0 rounded-4">
                 <div class="card-body p-4">
                     
-                    <!-- Login Form -->
                     <div class="collapse show multi-collapse" id="login-form">
                         <h3 class="text-center mb-4 fw-bold">Bienvenido</h3>
-                        <form action="create_session.php" method="POST">
+                        <form action="create_session.php" method="POST" class="needs-validation" novalidate>
                             <input type="hidden" name="accion" value="login">
                             <div class="mb-3">
                                 <label class="form-label text-secondary small fw-bold">CORREO ELECTRÓNICO</label>
-                                <input type="email"
-                                        name="correo"
-                                        class="form-control"
-                                        required
-                                        oninvalid="this.setCustomValidity('Por favor, ingrese un correo válido')"
-                                        oninput="this.setCustomValidity('')">
+                                <input type="email" name="correo" class="form-control" required>
+                                <div class="invalid-feedback">Por favor, ingrese un correo válido.</div>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label text-secondary small fw-bold">CONTRASEÑA</label>
-                                <input type="password"
-                                        name="password"
-                                        class="form-control"
-                                        required
-                                        oninvalid="this.setCustomValidity('Por favor, ingresa una contraseña')"
-                                        oninput="this.setCustomValidity('')">
+                                <input type="password" name="password" class="form-control" required>
+                                <div class="invalid-feedback">La contraseña es obligatoria.</div>
                             </div>
                             <button type="submit" class="btn btn-primary w-100 shadow-sm">Entrar</button>
                         </form>
@@ -48,62 +46,38 @@
                         </div>
                     </div>
 
-                    <!-- Register Form -->
                     <div class="collapse multi-collapse" id="register-form">
                         <h3 class="text-center mb-4 fw-bold">Nueva Cuenta</h3>
-                        <form action="register.php" method="POST" onsubmit="return validatePasswords()">
+                        <form action="register.php" method="POST" class="needs-validation" novalidate onsubmit="return validatePasswords()">
                             <input type="hidden" name="accion" value="record">
                             
                             <div class="mb-3">
                                 <label class="form-label text-secondary small fw-bold">NOMBRE</label>
-                                <input type="text"
-                                        name="nombre"
-                                        class="form-control"
-                                        required
-                                        oninvalid="this.setCustomValidity('Por favor, ingrese un nombre')"
-                                        oninput="this.setCustomValidity('')">
+                                <input type="text" name="nombre" class="form-control" required>
+                                <div class="invalid-feedback">El nombre es requerido.</div>
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label text-secondary small fw-bold">CÉDULA</label>
-                                <input type="text"
-                                        name="cedula"
-                                        class="form-control"
-                                        required
-                                        oninvalid="this.setCustomValidity('Por favor, ingrese la cédula')"
-                                        oninput="this.setCustomValidity('')">
+                                <input type="text" name="cedula" class="form-control" required>
+                                <div class="invalid-feedback">Ingrese su número de cédula.</div>
                             </div>
-
 
                             <div class="mb-3">
                                 <label class="form-label text-secondary small fw-bold">CORREO</label>
-                                <input type="email"
-                                        name="correo"
-                                        class="form-control"
-                                        required
-                                        oninvalid="this.setCustomValidity('Por favor, ingrese un correo válido')"
-                                        oninput="this.setCustomValidity('')">
+                                <input type="email" name="correo" class="form-control" required>
+                                <div class="invalid-feedback">Correo inválido.</div>
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label text-secondary small fw-bold">CONTRASEÑA</label>
-                                <input type="password"
-                                        id="reg_password"
-                                        name="password"
-                                        class="form-control"
-                                        required
-                                        oninvalid="this.setCustomValidity('Por favor, ingresa una contraseña')"
-                                        oninput="this.setCustomValidity('')">
+                                <input type="password" id="reg_password" name="password" class="form-control" required>
+                                <div class="invalid-feedback">Escriba una contraseña.</div>
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label text-secondary small fw-bold">CONFIRMAR CONTRASEÑA</label>
-                                <input type="password"
-                                        id="confirm_password"
-                                        class="form-control"
-                                        required
-                                        oninvalid="this.setCustomValidity('Por favor, confirme su contraseña')"
-                                        oninput="this.setCustomValidity('')">
+                                <input type="password" id="confirm_password" class="form-control" required>
                                 <div id="password-error" class="text-danger small mt-1 d-none">Las contraseñas no coinciden.</div>
                             </div>
 
@@ -124,6 +98,22 @@
 <script src="js/bootstrap.min.js"></script>
 
 <script>
+    // 1. Script para activar la validación de Bootstrap (reemplaza los globos grises)
+    (() => {
+      'use strict'
+      const forms = document.querySelectorAll('.needs-validation')
+      Array.from(forms).forEach(form => {
+        form.addEventListener('submit', event => {
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }
+          form.classList.add('was-validated')
+        }, false)
+      })
+    })()
+
+    // 2. Tu validación personalizada de contraseñas
     function validatePasswords() {
         const password = document.getElementById('reg_password').value;
         const confirm = document.getElementById('confirm_password').value;
