@@ -23,8 +23,9 @@ CREATE TABLE IF NOT EXISTS `macb_dw`.`usuarios` (
   `cedula` VARCHAR(10) NOT NULL,
   `nombre` VARCHAR(100) NOT NULL,
   `correo` VARCHAR(100) NOT NULL,
+  `clave_segura` VARCHAR(255) NOT NULL,
   `fecha_registro` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `clave_segura` VARCHAR(100) NOT NULL,
+  `fecha_actualizacion` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   UNIQUE INDEX `cedula_UNIQUE` (`cedula` ASC) VISIBLE,
   UNIQUE INDEX `correo_UNIQUE` (`correo` ASC) VISIBLE,
   PRIMARY KEY (`id_usuario`))
@@ -45,3 +46,19 @@ ON macb_dw.*
 TO 'macb_app'@'localhost';
 
 FLUSH PRIVILEGES;
+
+
+-- -----------------------------------------------------
+-- Inserción de Usuario Administrador
+-- -----------------------------------------------------
+USE `macb_dw` ;
+
+INSERT INTO `usuarios`
+(cedula, nombre, correo, clave_segura)
+VALUES
+(
+  '9999999999',
+  'Usuario Administrador',
+  'admin@admin.com',
+  '$2y$10$deTbZS.i3oEcOKY2OEJ1UeHypLc8tU/zrl2K3thRZysaoXvkQ1Wfe'
+);
