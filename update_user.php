@@ -4,9 +4,10 @@
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // obtener datos del formulario
-        $nuevo_nombre = htmlspecialchars(trim($_POST['nombre']));
-        $nuevo_correo = filter_var($_POST['correo'], FILTER_SANITIZE_EMAIL);
-        $id_usuario   = $_SESSION['user_id'];
+        $nuevo_nombre           = htmlspecialchars(trim($_POST['nombre']));
+        $nuevo_correo           = filter_var($_POST['correo'], FILTER_SANITIZE_EMAIL);
+        $id_usuario             = $_SESSION['user_id'];
+        $fecha_actualizacion    = date("Y-m-d H:i:s");;
 
         // Validación de campos vacíos
         if (empty($nuevo_nombre) || empty($nuevo_correo)) {
@@ -16,10 +17,9 @@
 
         try {
             // Preparamos la actualización en la base de datos
-            // Nota: La cédula no se incluye porque es de solo lectura
-            $sql = "UPDATE usuarios SET nombre = ?, correo = ? WHERE id_usuario = ?";
+            $sql = "UPDATE usuarios SET nombre = ?, correo = ?, fecha_actualizacion = ? WHERE id_usuario = ?";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param("ssi", $nuevo_nombre, $nuevo_correo, $id_usuario);
+            $stmt->bind_param("sssi", $nuevo_nombre, $nuevo_correo, $fecha_actualizacion, $id_usuario);
 
             if ($stmt->execute()) {
                 //Actualizar las variables de sesión

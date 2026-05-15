@@ -1,5 +1,7 @@
 <?php
-// create_session.php
+// Definir zona horaria
+date_default_timezone_set('America/Guayaquil');
+// crear session
 session_start();
 require_once 'connection_db.php';
 
