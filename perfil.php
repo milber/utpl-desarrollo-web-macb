@@ -34,7 +34,7 @@
                         <a class="nav-link" href="edit_perfil.php"><i class="bi bi-pencil-square me-2"></i> Editar Datos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="bi bi-shield-lock me-2"></i> Seguridad</a>
+                        <a class="nav-link" href="edit_password.php"><i class="bi bi-shield-lock me-2"></i> Seguridad</a>
                     </li>
                     <hr class="text-muted">
                     <li class="nav-item">
